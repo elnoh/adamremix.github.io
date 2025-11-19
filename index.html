@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AdamRemix™ – A New Standard in Character Creation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="AdamRemix™ introduces a breakthrough full-body retopology solution for digital artists who sculpt first and animate second."
+  />
+  <style>
+    /* ---------------------------
+       Base Reset
+    --------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;F
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      background: radial-gradient(circle at top, #151824 0%, #05060a 55%, #020309 100%);
+      color: #f4f5f9;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------------------------
+       Layout
+    --------------------------- */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    header {
+      padding: 1.5rem 0 1rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    main {
+      flex: 1;
+      padding-bottom: 3rem;
+    }
+
+    /* ---------------------------
+       Hero
+    --------------------------- */
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(0, 1.3fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.8rem;
+      color: #a2a7c8;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      line-height: 1.12;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      max-width: 32rem;
+      color: #c3c7df;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-highlight {
+      font-size: 0.95rem;
+      color: #d3d8f1;
+      margin-bottom: 2rem;
+    }
+
+    .hero-highlight span {
+      display: block;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.7rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 14px 35px rgba(10, 25, 70, 0.55);
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, opacity 0.12s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(10, 25, 70, 0.7);
+      opacity: 0.96;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(163, 171, 216, 0.45);
+      background: rgba(8, 11, 30, 0.65);
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #c3c7df;
+      transition: background 0.12s ease-out, border-color 0.12s ease-out;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(20, 25, 60, 0.9);
+      border-color: rgba(188, 196, 236, 0.9);
+    }
+
+    .hero-note {
+      font-size: 0.82rem;
+      color: #9095b6;
+    }
+
+    .hero-card {
+      border-radius: 18px;
+      padding: 1.75rem 1.75rem 1.4rem;
+      background: radial-gradient(circle at top left, #262b47 0%, #14172b 45%, #050712 100%);
+      border: 1px solid rgba(158, 166, 228, 0.35);
+      box-shadow: 0 14px 40px rgba(3, 5, 16, 0.85);
+    }
+
+    .hero-card-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #a2a8dd;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-body {
+      font-size: 0.9rem;
+      color: #c8cdef;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-card-meta {
+      font-size: 0.8rem;
+      color: #9da2c6;
+    }
+
+    .hero-card-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 133, 221, 0.7);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0.5rem;
+      color: #bcc2f8;
+    }
+
+    /* ---------------------------
+       Sections
+    --------------------------- */
+    section {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(45, 52, 92, 0.6);
+    }
+
+    section:first-of-type {
+      border-top: none;
+    }
+
+    .section-heading {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: #c3c7df;
+      max-width: 40rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list li {
+      margin-bottom: 0.4rem;
+      font-size: 0.94rem;
+      color: #d1d4ed;
+    }
+
+    .list li::before {
+      content: "•";
+      margin-right: 0.4rem;
+      color: #6a8bff;
+    }
+
+    .columns-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 800px) {
+      .columns-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(115, 126, 198, 0.7);
+      color: #b4baf0;
+      background: rgba(10, 14, 40, 0.8);
+    }
+
+    /* ---------------------------
+       Email Form
+    --------------------------- */
+    .signup {
+      margin-top: 1.2rem;
+      max-width: 420px;
+    }
+
+    .signup-label {
+      font-size: 0.86rem;
+      margin-bottom: 0.35rem;
+      color: #acb1d8;
+    }
+
+    .signup-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .signup-input {
+      flex: 1;
+      padding: 0.7rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(103, 115, 185, 0.8);
+      background: rgba(4, 7, 20, 0.9);
+      color: #e6e7fa;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .signup-input::placeholder {
+      color: #757ca5;
+    }
+
+    .signup-btn {
+      padding: 0.68rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .signup-btn:hover {
+      opacity: 0.95;
+    }
+
+    .signup-note {
+      margin-top: 0.35rem;
+      font-size: 0.78rem;
+      color: #888fb8;
+    }
+
+    /* ---------------------------
+       Footer
+    --------------------------- */
+    footer {
+      border-top: 1px solid rgba(45, 52, 92, 0.6);
+      padding: 1.5rem 0 2rem;
+      font-size: 0.8rem;
+      color: #8d93b8;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      opacity: 0.85;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <body>
+  <header style="padding: 2rem 0;">
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <img src="logo.png"
+         alt="AdamRemix Logo"
+         style="max-width: 260px; width: 70%; height: auto; display: block; margin: 0 auto;">
+  </div>
+</header>
+
+
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="hero-kicker">Full-body character workflow</div>
+            <h1 class="hero-title">
+              A New Standard in<br />Character Creation Begins Soon.
+            </h1>
+            <p class="hero-subtitle">
+              Clean topology. Intelligent structure. A faster path from sculpt to animation —
+              without giving up artistic control.
+            </p>
+            <p class="hero-highlight">
+              <span>AdamRemix™ introduces a breakthrough full-body retopology solution</span>
+              <span>for artists who sculpt first and animate second.</span>
+            </p>
+
+            <div class="hero-cta-row">
+              <a href="#notify" class="btn-primary">Join Early Notification List</a>
+              <a href="#retopo-pro" class="btn-secondary">Learn What’s Coming</a>
+            </div>
+            <p class="hero-note">
+              No spam. You’ll only hear from us when something important is ready.
+            </p>
+          </div>
+
+          <aside class="hero-card">
+            <div class="hero-card-label">First Release</div>
+            <div class="hero-card-title">AdamRemix™ Retopo Pro™</div>
+            <p class="hero-card-body">
+              Full-body retopology engineered for deformation, rigging, and real production.
+              Designed to turn a sculpted human into a clean, animation-ready mesh
+              in a fraction of the usual time.
+            </p>
+            <div class="hero-card-meta">
+              Focused on:
+              <div class="pill-row">
+                <span class="pill">Clean Quads</span>
+                <span class="pill">Shoulders &amp; Hips</span>
+                <span class="pill">Knees &amp; Elbows</span>
+                <span class="pill">Blender Workflow</span>
+              </div>
+            </div>
+            <div class="hero-card-pill">Breakthrough Coming Soon</div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="container columns-2">
+          <div>
+            <h2 class="section-heading">Built With Purpose. Designed for Artists.</h2>
+            <p class="section-subtitle">
+              AdamRemix™ exists to solve a clear problem: retopology should support creativity,
+              not slow it down. Our tools are built for sculpt-to-animation workflows, where
+              structure matters as much as style.
+            </p>
+            <ul class="list">
+              <li>Created for artists who sculpt first and animate second.</li>
+              <li>Focused on clean, predictable deformation behavior.</li>
+              <li>Developed through a hybrid creator–AI engineering process.</li>
+              <li>Built to fit naturally into modern Blender pipelines.</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="section-heading">A Modern Approach to Character Tools</h2>
+            <p class="section-subtitle">
+              Our process combines human artistic direction with AI-assisted technical refinement,
+              allowing rapid iteration while keeping full creative control in human hands.
+            </p>
+            <ul class="list">
+              <li>Artist-led topology design and structure.</li>
+              <li>Solver behavior tuned for production use.</li>
+              <li>Results aimed at rigging, animation, and export.</li>
+              <li>Each release focused on practical, real-world value.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RETOPO PRO -->
+      <section id="retopo-pro">
+        <div class="container columns-2">
+          <div>
+            <h2 class="section-heading">Retopo Pro™ — Full-Body Retopology for Real Production</h2>
+            <p class="section-subtitle">
+              Our first tool transforms sculpted human characters into clean, animation-ready topology.
+              Retopo Pro™ is designed to handle the full figure — from head to feet — with structured
+              loops where it matters most.
+            </p>
+            <ul class="list">
+              <li>Consistent quad layout for the entire body.</li>
+              <li>Shoulder, elbow, hip, and knee loops engineered for deformation.</li>
+              <li>Balanced density across the torso, limbs, and head.</li>
+              <li>Head-to-body transitions aligned with rigging needs.</li>
+              <li>Symmetry-friendly generation for fast iteration.</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="section-heading">Coming Soon</h2>
+            <p class="section-subtitle">
+              We are in the final stages of preparing Retopo Pro™ for release:
+              refining core logic, validating behavior on real sculpts, and tuning the workflow
+              for production environments.
+            </p>
+            <ul class="list">
+              <li>Topology rules and region layouts are being finalized.</li>
+              <li>Solver consistency and edge-flow are under active testing.</li>
+              <li>Integration with typical Blender sculpt pipelines is being tuned.</li>
+              <li>Early access and launch details will be announced soon.</li>
+            </ul>
+            <p class="section-subtitle" style="margin-top: 1rem;">
+              Join the notification list below if you’d like to be among the first to know
+              when Retopo Pro™ is ready.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOTIFY -->
+      <section id="notify">
+        <div class="container">
+          <h2 class="section-heading">Be the First to Know</h2>
+          <p class="section-subtitle">
+            AdamRemix™ will be released carefully and deliberately. If you’d like to hear about
+            the Retopo Pro™ launch — and only when there is something meaningful to share —
+            leave your email below.
+          </p>
+
+          <form class="signup" method="post" action="#">
+            <!-- TODO:
+                 Replace `action="#"` with your email provider endpoint
+                 (Mailchimp, ConvertKit, SendFox, Buttondown, etc.).
+            -->
+            <label class="signup-label" for="email">Email address</label>
+            <div class="signup-row">
+              <input
+                id="email"
+                class="signup-input"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+              <button class="signup-btn" type="submit">
+                Notify Me
+              </button>
+            </div>
+            <p class="signup-note">
+              No spam. No noise. Only key updates about AdamRemix™ and the Retopo Pro™ release.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>AdamRemix™ &mdash; A modern character creation platform for digital artists.</div>
+        <div class="footer-links">
+          <span>© 2025 All Rights Reserved</span>
+          <!-- Optional: add links when ready -->
+          <!-- <a href="#">Privacy</a>
+          <a href="#">Terms</a> -->
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
