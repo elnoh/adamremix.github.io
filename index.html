@@ -15,7 +15,7 @@
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
-      padding: 0;F
+      padding: 0;
     }
 
     html, body {
@@ -58,47 +58,7 @@
     }
 
     header {
-      padding: 1.5rem 0 1rem;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-    }
-
-    .logo-mark {
-      width: 26px;
-      height: 26px;
-      border-radius: 7px;
-      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.85rem;
-      opacity: 0.85;
-    }
-
-    .nav-links a:hover {
-      opacity: 1;
+      padding: 2rem 0 1rem;
     }
 
     main {
@@ -259,6 +219,22 @@
       color: #bcc2f8;
     }
 
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(115, 126, 198, 0.7);
+      color: #b4baf0;
+      background: rgba(10, 14, 40, 0.8);
+    }
+
     /* ---------------------------
        Sections
     --------------------------- */
@@ -312,80 +288,6 @@
       }
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-    }
-
-    .pill {
-      font-size: 0.78rem;
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(115, 126, 198, 0.7);
-      color: #b4baf0;
-      background: rgba(10, 14, 40, 0.8);
-    }
-
-    /* ---------------------------
-       Email Form
-    --------------------------- */
-    .signup {
-      margin-top: 1.2rem;
-      max-width: 420px;
-    }
-
-    .signup-label {
-      font-size: 0.86rem;
-      margin-bottom: 0.35rem;
-      color: #acb1d8;
-    }
-
-    .signup-row {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .signup-input {
-      flex: 1;
-      padding: 0.7rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(103, 115, 185, 0.8);
-      background: rgba(4, 7, 20, 0.9);
-      color: #e6e7fa;
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .signup-input::placeholder {
-      color: #757ca5;
-    }
-
-    .signup-btn {
-      padding: 0.68rem 1.25rem;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
-      color: #ffffff;
-      font-size: 0.86rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .signup-btn:hover {
-      opacity: 0.95;
-    }
-
-    .signup-note {
-      margin-top: 0.35rem;
-      font-size: 0.78rem;
-      color: #888fb8;
-    }
-
     /* ---------------------------
        Footer
     --------------------------- */
@@ -417,20 +319,129 @@
     .footer-links a:hover {
       opacity: 1;
     }
+
+    /* ---------------------------
+       Modal Form – AdamRemix
+    --------------------------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 7, 15, 0.85);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, #171a27, #0f111b);
+      border: 1px solid rgba(120, 132, 200, 0.4);
+      border-radius: 14px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      position: relative;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.8rem;
+      border: none;
+      background: none;
+      font-size: 1.7rem;
+      color: #cdd1ea;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      margin-bottom: 0.4rem;
+      font-size: 1.35rem;
+    }
+
+    .modal-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      color: #aeb4d6;
+    }
+
+    .modal-form label {
+      font-size: 0.82rem;
+      color: #b8bee6;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .modal-form input,
+    .modal-form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid rgba(120, 132, 200, 0.4);
+      margin-bottom: 1rem;
+      background: rgba(8, 10, 20, 0.8);
+      color: #f0f1ff;
+      font-size: 0.9rem;
+    }
+
+    .modal-form textarea {
+      resize: vertical;
+    }
+
+    .modal-submit {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .modal-submit:hover {
+      opacity: 0.95;
+    }
+
+    .modal-status {
+      min-height: 1.1rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.7rem;
+      color: #a6f1b8; /* success */
+    }
+
+    .modal-status.error {
+      color: #f6a6a6; /* error */
+    }
   </style>
 </head>
 <body>
   <div class="page">
-    <body>
-  <header style="padding: 2rem 0;">
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="logo.png"
-         alt="AdamRemix Logo"
-         style="max-width: 260px; width: 70%; height: auto; display: block; margin: 0 auto;">
-  </div>
-</header>
-
-
+    <!-- Header with centered logo -->
+    <header>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <img
+          src="logo.png"
+          alt="AdamRemix Logo"
+          style="max-width: 260px; width: 70%; height: auto; display: block; margin: 0 auto;"
+        />
+      </div>
+    </header>
 
     <main>
       <!-- HERO -->
@@ -449,10 +460,14 @@
               <span>AdamRemix™ introduces a breakthrough full-body retopology solution</span>
               <span>for artists who sculpt first and animate second.</span>
             </p>
-            
+
             <div class="hero-cta-row">
-              <a href="#notify" class="btn-primary">Join Early Notification List</a>
-              <a href="#retopo-pro" class="btn-secondary">Learn What’s Coming</a>
+              <a href="#notify-modal" id="openNotify" class="btn-primary">
+                Join Early Notification List
+              </a>
+              <a href="#retopo-pro" class="btn-secondary">
+                Learn What’s Coming
+              </a>
             </div>
             <p class="hero-note">
               No spam. You’ll only hear from us when something important is ready.
@@ -545,52 +560,12 @@
               <li>Integration with typical Blender sculpt pipelines is being tuned.</li>
               <li>Early access and launch details will be announced soon.</li>
             </ul>
-           <!--
             <p class="section-subtitle" style="margin-top: 1rem;">
-              Join the notification list below if you’d like to be among the first to know
+              Use the notification button above if you’d like to be among the first to know
               when Retopo Pro™ is ready.
             </p>
           </div>
         </div>
-      </section>
-            -->
-
-      <!-- NOTIFY -->
-     <!--
-      <section id="notify">
-        <div class="container">
-          <h2 class="section-heading">Be the First to Know</h2>
-          <p class="section-subtitle">
-            AdamRemix™ will be released carefully and deliberately. If you’d like to hear about
-            the Retopo Pro™ launch — and only when there is something meaningful to share —
-            leave your email below.
-          </p>
-
-          <form class="signup" method="post" action="#">
-            <!-- TODO:
-                 Replace `action="#"` with your email provider endpoint
-                 (Mailchimp, ConvertKit, SendFox, Buttondown, etc.).
-         
-            <label class="signup-label" for="email">Email address</label>
-            <div class="signup-row">
-              <input
-                id="email"
-                class="signup-input"
-                type="email"
-                name="email"
-                placeholder="you@example.com"
-                required
-              />
-              <button class="signup-btn" type="submit">
-                Notify Me
-              </button>
-            </div>
-            <p class="signup-note">
-              No spam. No noise. Only key updates about AdamRemix™ and the Retopo Pro™ release.
-            </p>
-          </form>
-        </div>
-      -->
       </section>
     </main>
 
@@ -599,12 +574,126 @@
         <div>AdamRemix™ &mdash; A modern character creation platform for digital artists.</div>
         <div class="footer-links">
           <span>© 2025 All Rights Reserved</span>
-          <!-- Optional: add links when ready -->
-          <!-- <a href="#">Privacy</a>
-          <a href="#">Terms</a> -->
+          <!-- Future links: Privacy, Terms, etc. -->
         </div>
       </div>
     </footer>
   </div>
+
+  <!-- ============================
+       MODAL FORM — ADAMREMIX
+  =============================== -->
+  <div id="notifyModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close notification form">&times;</button>
+
+      <h2 class="modal-title">Join Early Notification List</h2>
+      <p class="modal-subtitle">
+        Leave your details and we’ll notify you when AdamRemix™ Retopo Pro is ready.
+      </p>
+
+      <form
+        name="notify-form"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="modal-form"
+      >
+        <input type="hidden" name="form-name" value="notify-form" />
+
+        <!-- Honeypot field for bots -->
+        <p style="display:none;">
+          <label>Don’t fill this out if you're human:
+            <input name="bot-field" />
+          </label>
+        </p>
+
+        <label>Your Name</label>
+        <input type="text" name="name" required placeholder="Your name" />
+
+        <label>Email Address</label>
+        <input type="email" name="email" required placeholder="you@example.com" />
+
+        <label>Message (optional)</label>
+        <textarea name="message" rows="4" placeholder="Tell us anything…"></textarea>
+
+        <div id="modalStatus" class="modal-status"></div>
+
+        <button type="submit" class="modal-submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("notifyModal");
+    const openBtn = document.getElementById("openNotify");
+    const closeBtn = document.querySelector(".modal-close");
+    const form = document.querySelector('form[name="notify-form"]');
+    const statusEl = document.getElementById("modalStatus");
+
+    // Open modal
+    openBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      statusEl.textContent = "";
+      statusEl.classList.remove("error");
+      modal.classList.remove("hidden");
+    });
+
+    // Close modal (button)
+    closeBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    // Close modal (click outside content)
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.add("hidden");
+    });
+
+    // Close modal (ESC key)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") modal.classList.add("hidden");
+    });
+
+    // Helper: encode form data for Netlify
+    function encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+        )
+        .join("&");
+    }
+
+    // Handle form submit with AJAX to Netlify
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Sending…";
+      statusEl.classList.remove("error");
+
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => (data[key] = value));
+
+      try {
+        const response = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode(data),
+        });
+
+        if (response.ok) {
+          statusEl.textContent = "Thank you. You’re on the early notification list.";
+          form.reset();
+        } else {
+          statusEl.textContent =
+            "Something went wrong. Please try again in a moment.";
+          statusEl.classList.add("error");
+        }
+      } catch (err) {
+        statusEl.textContent =
+          "Network error. Please check your connection and try again.";
+        statusEl.classList.add("error");
+      }
+    });
+  </script>
 </body>
 </html>
