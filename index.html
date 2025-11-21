@@ -58,7 +58,7 @@
     }
 
     header {
-      padding: 2rem 0 1rem;
+      padding: 1.5rem 0 1rem;
     }
 
     main {
@@ -259,6 +259,18 @@
       margin-bottom: 1.5rem;
     }
 
+    .columns-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 800px) {
+      .columns-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .list {
       list-style: none;
       padding-left: 0;
@@ -274,18 +286,6 @@
       content: "•";
       margin-right: 0.4rem;
       color: #6a8bff;
-    }
-
-    .columns-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.75rem;
-    }
-
-    @media (max-width: 800px) {
-      .columns-2 {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* ---------------------------
@@ -321,120 +321,144 @@
     }
 
     /* ---------------------------
-       Modal Form – AdamRemix
+       Modal: Join Early Notification
     --------------------------- */
-    .modal {
+    .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(5, 7, 15, 0.85);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      padding: 1rem;
-    }
-
-    .hidden {
+      background: rgba(0, 0, 0, 0.65);
       display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
     }
 
-    .modal-content {
-      background: linear-gradient(145deg, #171a27, #0f111b);
-      border: 1px solid rgba(120, 132, 200, 0.4);
-      border-radius: 14px;
-      padding: 2rem;
-      max-width: 420px;
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .notify-modal {
       width: 100%;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      max-width: 540px;
+      background: #0b0d1a;
+      border-radius: 24px;
+      padding: 2rem 2.25rem 2rem;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(158, 166, 228, 0.5);
       position: relative;
-      animation: fadeIn 0.25s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    @media (max-width: 520px) {
+      .notify-modal {
+        margin: 0 1rem;
+        padding: 1.6rem 1.5rem 1.7rem;
+      }
     }
 
-    .modal-close {
+    .notify-modal-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .notify-modal-subtitle {
+      font-size: 0.95rem;
+      color: #c3c7df;
+      margin-bottom: 1.5rem;
+    }
+
+    .notify-close {
       position: absolute;
-      top: 0.6rem;
-      right: 0.8rem;
-      border: none;
-      background: none;
-      font-size: 1.7rem;
-      color: #cdd1ea;
+      top: 1.1rem;
+      right: 1.1rem;
+      font-size: 1.3rem;
       cursor: pointer;
+      color: #a9afd6;
+      border: none;
+      background: transparent;
+      padding: 0;
+      line-height: 1;
     }
 
-    .modal-title {
-      margin-bottom: 0.4rem;
-      font-size: 1.35rem;
-    }
-
-    .modal-subtitle {
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-      color: #aeb4d6;
-    }
-
-    .modal-form label {
-      font-size: 0.82rem;
-      color: #b8bee6;
-      margin-bottom: 0.3rem;
-      display: block;
-    }
-
-    .modal-form input,
-    .modal-form textarea {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 8px;
-      border: 1px solid rgba(120, 132, 200, 0.4);
+    .notify-field {
       margin-bottom: 1rem;
-      background: rgba(8, 10, 20, 0.8);
-      color: #f0f1ff;
-      font-size: 0.9rem;
     }
 
-    .modal-form textarea {
+    .notify-label {
+      display: block;
+      font-size: 0.86rem;
+      margin-bottom: 0.35rem;
+      color: #acb1d8;
+    }
+
+    .notify-input,
+    .notify-textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid rgba(103, 115, 185, 0.9);
+      background: rgba(4, 7, 20, 0.95);
+      color: #e6e7fa;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .notify-input::placeholder,
+    .notify-textarea::placeholder {
+      color: #747aa5;
+    }
+
+    .notify-textarea {
+      min-height: 90px;
       resize: vertical;
     }
 
-    .modal-submit {
+    .notify-submit {
+      margin-top: 0.5rem;
       width: 100%;
-      padding: 0.8rem;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
       border: none;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.05em;
       cursor: pointer;
+      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      box-shadow: 0 16px 40px rgba(10, 25, 70, 0.55);
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, opacity 0.12s ease-out;
     }
 
-    .modal-submit:hover {
-      opacity: 0.95;
+    .notify-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 46px rgba(10, 25, 70, 0.75);
+      opacity: 0.97;
     }
 
-    .modal-status {
-      min-height: 1.1rem;
+    .form-status {
+      margin-top: 0.75rem;
       font-size: 0.8rem;
-      margin-bottom: 0.7rem;
-      color: #a6f1b8; /* success */
+      min-height: 1.1em;
     }
 
-    .modal-status.error {
-      color: #f6a6a6; /* error */
+    .form-status.pending {
+      color: #c3c7df;
+    }
+
+    .form-status.success {
+      color: #7fe3b4;
+    }
+
+    .form-status.error {
+      color: #ff8f8f;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Header with centered logo -->
+    <!-- Header with logo -->
     <header>
-      <div style="display: flex; justify-content: center; align-items: center;">
+      <div class="container" style="display: flex; justify-content: center; align-items: center;">
         <img
           src="logo.png"
           alt="AdamRemix Logo"
@@ -462,12 +486,10 @@
             </p>
 
             <div class="hero-cta-row">
-              <a href="#notify-modal" id="openNotify" class="btn-primary">
+              <button type="button" class="btn-primary" id="open-notify-modal">
                 Join Early Notification List
-              </a>
-              <a href="#retopo-pro" class="btn-secondary">
-                Learn What’s Coming
-              </a>
+              </button>
+              <a href="#retopo-pro" class="btn-secondary">Learn What’s Coming</a>
             </div>
             <p class="hero-note">
               No spam. You’ll only hear from us when something important is ready.
@@ -561,8 +583,8 @@
               <li>Early access and launch details will be announced soon.</li>
             </ul>
             <p class="section-subtitle" style="margin-top: 1rem;">
-              Use the notification button above if you’d like to be among the first to know
-              when Retopo Pro™ is ready.
+              The early notification list will open first to artists who care about clean,
+              animation-ready characters — exactly the people AdamRemix™ is being built for.
             </p>
           </div>
         </div>
@@ -574,121 +596,187 @@
         <div>AdamRemix™ &mdash; A modern character creation platform for digital artists.</div>
         <div class="footer-links">
           <span>© 2025 All Rights Reserved</span>
-          <!-- Future links: Privacy, Terms, etc. -->
+          <!-- <a href="#">Privacy</a>
+          <a href="#">Terms</a> -->
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- ============================
-       MODAL FORM — ADAMREMIX
-  =============================== -->
-  <div id="notifyModal" class="modal hidden">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close notification form">&times;</button>
-
-      <h2 class="modal-title">Join Early Notification List</h2>
-      <p class="modal-subtitle">
+  <!-- Join Early Notification Modal -->
+  <div class="modal-backdrop" id="notify-modal" aria-hidden="true">
+    <div class="notify-modal" role="dialog" aria-modal="true" aria-labelledby="notify-modal-title">
+      <button class="notify-close" type="button" id="notify-close" aria-label="Close">×</button>
+      <h2 class="notify-modal-title" id="notify-modal-title">Join Early Notification List</h2>
+      <p class="notify-modal-subtitle">
         Leave your details and we’ll notify you when AdamRemix™ Retopo Pro is ready.
       </p>
 
+      <!-- Netlify form wiring -->
       <form
-        name="notify-form"
+        id="notify-form"
+        name="early-notify"
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        class="modal-form"
       >
-        <input type="hidden" name="form-name" value="notify-form" />
-
-        <!-- Honeypot field for bots -->
+        <!-- Netlify needs this hidden form-name field -->
+        <input type="hidden" name="form-name" value="early-notify" />
+        <!-- Honeypot to reduce spam -->
         <p style="display:none;">
-          <label>Don’t fill this out if you're human:
-            <input name="bot-field" />
-          </label>
+          <label>Don’t fill this out: <input name="bot-field" /></label>
         </p>
 
-        <label>Your Name</label>
-        <input type="text" name="name" required placeholder="Your name" />
+        <div class="notify-field">
+          <label class="notify-label" for="notify-name">Your Name</label>
+          <input
+            id="notify-name"
+            name="name"
+            class="notify-input"
+            type="text"
+            placeholder="Noah"
+          />
+        </div>
 
-        <label>Email Address</label>
-        <input type="email" name="email" required placeholder="you@example.com" />
+        <div class="notify-field">
+          <label class="notify-label" for="notify-email">Email Address</label>
+          <input
+            id="notify-email"
+            name="email"
+            class="notify-input"
+            type="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
 
-        <label>Message (optional)</label>
-        <textarea name="message" rows="4" placeholder="Tell us anything…"></textarea>
+        <div class="notify-field">
+          <label class="notify-label" for="notify-message">Message (optional)</label>
+          <textarea
+            id="notify-message"
+            name="message"
+            class="notify-textarea"
+            placeholder="Tell us how you work with characters today…"
+          ></textarea>
+        </div>
 
-        <div id="modalStatus" class="modal-status"></div>
-
-        <button type="submit" class="modal-submit">Send</button>
+        <button type="submit" class="notify-submit">Send</button>
+        <p id="notify-status" class="form-status"></p>
       </form>
     </div>
   </div>
 
   <script>
-  // Modal Elements
-  const openModalBtn = document.querySelector('[href="#notify"]');
-  const modal = document.getElementById('notify-modal');
-  const modalBg = document.getElementById('modal-bg');
-  const closeModalBtn = document.getElementById('modal-close');
+    (function () {
+      const openBtn = document.getElementById("open-notify-modal");
+      const modal = document.getElementById("notify-modal");
+      const closeBtn = document.getElementById("notify-close");
+      const form = document.getElementById("notify-form");
+      const statusEl = document.getElementById("notify-status");
+      const FORM_NAME = "early-notify";
 
-  // Form Elements
-  const notifyForm = document.getElementById('notify-form');
-  const notifySuccess = document.getElementById('notify-success');
-  const notifyError = document.getElementById('notify-error');
+      function openModal() {
+        if (!modal) return;
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+        statusEl.textContent = "";
+        statusEl.className = "form-status";
+      }
 
-  // -------------------------
-  // OPEN MODAL
-  // -------------------------
-  openModalBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    notifySuccess.style.display = 'none';
-    notifyError.style.display = 'none';
-    modal.style.display = 'flex';
-  });
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+      }
 
-  // -------------------------
-  // CLOSE MODAL
-  // -------------------------
-  function closeModal() {
-    modal.style.display = 'none';
-  }
+      if (openBtn) {
+        openBtn.addEventListener("click", openModal);
+      }
 
-  modalBg.addEventListener('click', closeModal);
-  closeModalBtn.addEventListener('click', closeModal);
+      if (closeBtn) {
+        closeBtn.addEventListener("click", closeModal);
+      }
 
-  // -------------------------
-  // SUBMIT FORM (Netlify)
-  // -------------------------
-  notifyForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
+      // Click outside the modal to close
+      if (modal) {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+      }
 
-    notifySuccess.style.display = 'none';
-    notifyError.style.display = 'none';
-
-    const formData = new FormData(notifyForm);
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        body: formData
+      // Esc key closes modal
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.classList.contains("show")) {
+          closeModal();
+        }
       });
 
-      if (response.ok) {
-        // ⭐ Your chosen success message (Option 7)
-        notifySuccess.textContent =
-          'Thank you — truly. You’re now part of the small group who will see AdamRemix™ before the world does.';
-        notifySuccess.style.display = 'block';
-        notifyForm.reset();
-      } else {
-        throw new Error('Network error');
+      function encodeFormData(data) {
+        return Object.keys(data)
+          .map(
+            (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+          )
+          .join("&");
       }
-    } catch (err) {
-      notifyError.textContent =
-        'Something went wrong. Please try again in a moment.';
-      notifyError.style.display = 'block';
-    }
-  });
-</script>
 
+      // Handle form submit -> send to Netlify Forms
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const name = form.name.value.trim();
+          const email = form.email.value.trim();
+          const message = form.message.value.trim();
+          const botField = form["bot-field"].value;
+
+          if (botField) {
+            // Bot, silently ignore
+            return;
+          }
+
+          if (!email) {
+            statusEl.textContent = "Please add a valid email.";
+            statusEl.className = "form-status error";
+            return;
+          }
+
+          statusEl.textContent = "Saving your details…";
+          statusEl.className = "form-status pending";
+
+          const data = {
+            "form-name": FORM_NAME,
+            name,
+            email,
+            message,
+          };
+
+          fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encodeFormData(data),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+
+              // ✅ Your chosen success message (Option 7)
+              statusEl.textContent =
+                "Thank you — truly. You’re now part of the small group who will see AdamRemix™ before the world does.";
+              statusEl.className = "form-status success";
+              form.reset();
+            })
+            .catch((error) => {
+              console.error("Netlify form submission error:", error);
+              statusEl.textContent =
+                "Something went wrong. Please try again in a moment.";
+              statusEl.className = "form-status error";
+            });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
