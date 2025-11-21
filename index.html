@@ -58,12 +58,19 @@
     }
 
     header {
-      padding: 2rem 0 1rem;
+      padding: 1.5rem 0 1rem;
     }
 
     main {
       flex: 1;
       padding-bottom: 3rem;
+    }
+
+    /* Logo header */
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     /* ---------------------------
@@ -289,6 +296,137 @@
     }
 
     /* ---------------------------
+       Modal
+    --------------------------- */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 7, 18, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease-out;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 520px;
+      background: radial-gradient(circle at top, #171828 0%, #050611 65%);
+      border-radius: 18px;
+      border: 1px solid rgba(132, 142, 220, 0.4);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.75);
+      padding: 1.75rem 1.9rem 1.6rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1.1rem;
+      border: none;
+      background: transparent;
+      color: #c5c9f1;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      font-size: 1.45rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .modal-subtitle {
+      font-size: 0.95rem;
+      color: #cbd0ff;
+      margin-bottom: 1.2rem;
+    }
+
+    .modal-label {
+      display: block;
+      font-size: 0.82rem;
+      margin-bottom: 0.3rem;
+      color: #a7acd8;
+    }
+
+    .modal-input,
+    .modal-textarea {
+      width: 100%;
+      border-radius: 11px;
+      border: 1px solid rgba(111, 122, 210, 0.75);
+      background: rgba(6, 8, 24, 0.98);
+      padding: 0.65rem 0.8rem;
+      color: #f5f5ff;
+      font-size: 0.92rem;
+      outline: none;
+      margin-bottom: 0.85rem;
+    }
+
+    .modal-input::placeholder,
+    .modal-textarea::placeholder {
+      color: #6f769f;
+    }
+
+    .modal-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .modal-btn-row {
+      margin-top: 0.6rem;
+    }
+
+    .modal-btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.7rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 14px 35px rgba(10, 25, 70, 0.55);
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, opacity 0.12s ease-out;
+    }
+
+    .modal-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(10, 25, 70, 0.7);
+      opacity: 0.97;
+    }
+
+    .modal-status {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: #f1bfb3;
+    }
+
+    .modal-status.success {
+      color: #a3f7c4;
+    }
+
+    .hidden-honeypot {
+      display: none;
+      visibility: hidden;
+      height: 0;
+      overflow: hidden;
+    }
+
+    /* ---------------------------
        Footer
     --------------------------- */
     footer {
@@ -311,135 +449,13 @@
       flex-wrap: wrap;
       gap: 0.9rem;
     }
-
-    .footer-links a {
-      opacity: 0.85;
-    }
-
-    .footer-links a:hover {
-      opacity: 1;
-    }
-
-    /* ---------------------------
-       Modal Form – AdamRemix
-    --------------------------- */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(5, 7, 15, 0.85);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      padding: 1rem;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .modal-content {
-      background: linear-gradient(145deg, #171a27, #0f111b);
-      border: 1px solid rgba(120, 132, 200, 0.4);
-      border-radius: 14px;
-      padding: 2rem;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
-      position: relative;
-      animation: fadeIn 0.25s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 0.6rem;
-      right: 0.8rem;
-      border: none;
-      background: none;
-      font-size: 1.7rem;
-      color: #cdd1ea;
-      cursor: pointer;
-    }
-
-    .modal-title {
-      margin-bottom: 0.4rem;
-      font-size: 1.35rem;
-    }
-
-    .modal-subtitle {
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-      color: #aeb4d6;
-    }
-
-    .modal-form label {
-      font-size: 0.82rem;
-      color: #b8bee6;
-      margin-bottom: 0.3rem;
-      display: block;
-    }
-
-    .modal-form input,
-    .modal-form textarea {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 8px;
-      border: 1px solid rgba(120, 132, 200, 0.4);
-      margin-bottom: 1rem;
-      background: rgba(8, 10, 20, 0.8);
-      color: #f0f1ff;
-      font-size: 0.9rem;
-    }
-
-    .modal-form textarea {
-      resize: vertical;
-    }
-
-    .modal-submit {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #4f8dfc, #9b6bff);
-      border: none;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-
-    .modal-submit:hover {
-      opacity: 0.95;
-    }
-
-    .modal-status {
-      min-height: 1.1rem;
-      font-size: 0.8rem;
-      margin-bottom: 0.7rem;
-      color: #a6f1b8; /* success */
-    }
-
-    .modal-status.error {
-      color: #f6a6a6; /* error */
-    }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Header with centered logo -->
     <header>
-      <div style="display: flex; justify-content: center; align-items: center;">
-        <img
-          src="logo.png"
-          alt="AdamRemix Logo"
-          style="max-width: 260px; width: 70%; height: auto; display: block; margin: 0 auto;"
-        />
+      <div class="logo-wrap">
+        <img src="logo.png" alt="AdamRemix Logo" style="max-width: 260px; width: 70%; height: auto;">
       </div>
     </header>
 
@@ -461,16 +477,14 @@
               <span>for artists who sculpt first and animate second.</span>
             </p>
 
-            <!-- <div class="hero-cta-row">
-              <a href="#notify-modal" id="openNotify" class="btn-primary">
+            <div class="hero-cta-row">
+              <button id="open-notify-modal" class="btn-primary" type="button">
                 Join Early Notification List
-              </a>
-              <a href="#retopo-pro" class="btn-secondary">
-                Learn What’s Coming
-              </a>
+              </button>
+              <a href="#retopo-pro" class="btn-secondary">Learn What’s Coming</a>
             </div>
             <p class="hero-note">
-              No spam. You’ll only hear from us when something important is ready.-->
+              No spam. You’ll only hear from us when something important is ready.
             </p>
           </div>
 
@@ -561,12 +575,11 @@
               <li>Early access and launch details will be announced soon.</li>
             </ul>
             <p class="section-subtitle" style="margin-top: 1rem;">
-             <!-- Use the notification button above if you’d like to be among the first to know
+              Join the notification list if you’d like to be among the first to know
               when Retopo Pro™ is ready.
             </p>
           </div>
         </div>
-      -->
       </section>
     </main>
 
@@ -575,128 +588,145 @@
         <div>AdamRemix™ &mdash; A modern character creation platform for digital artists.</div>
         <div class="footer-links">
           <span>© 2025 All Rights Reserved</span>
-          <!-- Future links: Privacy, Terms, etc. -->
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- ============================
-       MODAL FORM — ADAMREMIX
-  =============================== 
-  <div id="notifyModal" class="modal hidden">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close notification form">&times;</button>
-
-      <h2 class="modal-title">Join Early Notification List</h2>
+  <!-- Modal (Netlify form) -->
+  <div id="notify-modal-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="notify-modal-title">
+      <button class="modal-close" type="button" id="close-notify-modal" aria-label="Close">×</button>
+      <h2 id="notify-modal-title" class="modal-title">Join Early Notification List</h2>
       <p class="modal-subtitle">
-        Leave your details and we’ll notify you when AdamRemix™ Retopo Pro is ready.
+        Leave your details and we’ll let you know when AdamRemix™ Retopo Pro is ready.
       </p>
 
-      
-
       <form
-        name="notify-form"
+        id="notify-form"
+        name="notify-modal"
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        class="modal-form"
       >
-        <input type="hidden" name="form-name" value="notify-form" />
+        <!-- Netlify form name -->
+        <input type="hidden" name="form-name" value="notify-modal" />
 
-         Honeypot field for bots 
-        <p style="display:none;">
-          <label>Don’t fill this out if you're human:
-            <input name="bot-field" />
-          </label>
+        <!-- Honeypot -->
+        <p class="hidden-honeypot">
+          <label>Don’t fill this field: <input name="bot-field" /></label>
         </p>
 
-        <label>Your Name</label>
-        <input type="text" name="name" required placeholder="Your name" />
+        <label class="modal-label" for="notify-name">Your Name</label>
+        <input
+          id="notify-name"
+          class="modal-input"
+          type="text"
+          name="name"
+          autocomplete="name"
+          required
+        />
 
-        <label>Email Address</label>
-        <input type="email" name="email" required placeholder="you@example.com" />
+        <label class="modal-label" for="notify-email">Email Address</label>
+        <input
+          id="notify-email"
+          class="modal-input"
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+        />
 
-        <label>Message (optional)</label>
-        <textarea name="message" rows="4" placeholder="Tell us anything…"></textarea>
+        <label class="modal-label" for="notify-message">Message (optional)</label>
+        <textarea
+          id="notify-message"
+          class="modal-textarea"
+          name="message"
+          placeholder="Tell us how you work with characters today…"
+        ></textarea>
 
-        <div id="modalStatus" class="modal-status"></div>
+        <div class="modal-btn-row">
+          <button class="modal-btn" type="submit">Send</button>
+        </div>
 
-        <button type="submit" class="modal-submit">Send</button>
+        <p id="notify-status" class="modal-status" aria-live="polite"></p>
       </form>
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById("notifyModal");
-    const openBtn = document.getElementById("openNotify");
-    const closeBtn = document.querySelector(".modal-close");
-    const form = document.querySelector('form[name="notify-form"]');
-    const statusEl = document.getElementById("modalStatus");
+    // Modal open/close
+    const openBtn = document.getElementById('open-notify-modal');
+    const closeBtn = document.getElementById('close-notify-modal');
+    const backdrop = document.getElementById('notify-modal-backdrop');
 
-    // Open modal
-    openBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      statusEl.textContent = "";
-      statusEl.classList.remove("error");
-      modal.classList.remove("hidden");
-    });
-
-    // Close modal (button)
-    closeBtn.addEventListener("click", () => {
-      modal.classList.add("hidden");
-    });
-
-    // Close modal (click outside content)
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.add("hidden");
-    });
-
-    // Close modal (ESC key)
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") modal.classList.add("hidden");
-    });
-
-    // Helper: encode form data for Netlify
-    function encode(data) {
-      return Object.keys(data)
-        .map(
-          (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-        )
-        .join("&");
+    function openModal() {
+      backdrop.classList.add('is-open');
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.getElementById('notify-name').focus();
     }
 
-    // Handle form submit with AJAX to Netlify
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      statusEl.textContent = "Sending…";
-      statusEl.classList.remove("error");
+    function closeModal() {
+      backdrop.classList.remove('is-open');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
 
-      const formData = new FormData(form);
-      const data = {};
-      formData.forEach((value, key) => (data[key] = value));
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Netlify AJAX submit
+    const notifyForm = document.getElementById('notify-form');
+    const notifyStatus = document.getElementById('notify-status');
+
+    function encode(data) {
+      return Object.keys(data)
+        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+        .join('&');
+    }
+
+    notifyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = {
+        'form-name': form.getAttribute('name'),
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value || ''
+      };
+
+      notifyStatus.textContent = 'Sending…';
+      notifyStatus.classList.remove('success');
 
       try {
-        const response = await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode(data),
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode(formData)
         });
 
-        if (response.ok) {
-          statusEl.textContent = "Thank you. You’re on the early notification list.";
+        if (res.ok) {
           form.reset();
+          notifyStatus.textContent =
+            "You’re officially on the radar. We’ll reach out when AdamRemix™ Retopo Pro is ready.";
+          notifyStatus.classList.add('success');
         } else {
-          statusEl.textContent =
-            "Something went wrong. Please try again in a moment.";
-          statusEl.classList.add("error");
+          notifyStatus.textContent =
+            'Something went wrong. Please try again in a moment.';
         }
       } catch (err) {
-        statusEl.textContent =
-          "Network error. Please check your connection and try again.";
-        statusEl.classList.add("error");
+        notifyStatus.textContent =
+          'Something went wrong. Please check your connection and try again.';
       }
-    }); -->
+    });
   </script>
 </body>
 </html>
