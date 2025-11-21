@@ -625,75 +625,70 @@
   </div>
 
   <script>
-    const modal = document.getElementById("notifyModal");
-    const openBtn = document.getElementById("openNotify");
-    const closeBtn = document.querySelector(".modal-close");
-    const form = document.querySelector('form[name="notify-form"]');
-    const statusEl = document.getElementById("modalStatus");
+  // Modal Elements
+  const openModalBtn = document.querySelector('[href="#notify"]');
+  const modal = document.getElementById('notify-modal');
+  const modalBg = document.getElementById('modal-bg');
+  const closeModalBtn = document.getElementById('modal-close');
 
-    // Open modal
-    openBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      statusEl.textContent = "";
-      statusEl.classList.remove("error");
-      modal.classList.remove("hidden");
-    });
+  // Form Elements
+  const notifyForm = document.getElementById('notify-form');
+  const notifySuccess = document.getElementById('notify-success');
+  const notifyError = document.getElementById('notify-error');
 
-    // Close modal (button)
-    closeBtn.addEventListener("click", () => {
-      modal.classList.add("hidden");
-    });
+  // -------------------------
+  // OPEN MODAL
+  // -------------------------
+  openModalBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    notifySuccess.style.display = 'none';
+    notifyError.style.display = 'none';
+    modal.style.display = 'flex';
+  });
 
-    // Close modal (click outside content)
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.add("hidden");
-    });
+  // -------------------------
+  // CLOSE MODAL
+  // -------------------------
+  function closeModal() {
+    modal.style.display = 'none';
+  }
 
-    // Close modal (ESC key)
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") modal.classList.add("hidden");
-    });
+  modalBg.addEventListener('click', closeModal);
+  closeModalBtn.addEventListener('click', closeModal);
 
-    // Helper: encode form data for Netlify
-    function encode(data) {
-      return Object.keys(data)
-        .map(
-          (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-        )
-        .join("&");
-    }
+  // -------------------------
+  // SUBMIT FORM (Netlify)
+  // -------------------------
+  notifyForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-    // Handle form submit with AJAX to Netlify
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      statusEl.textContent = "Sending…";
-      statusEl.classList.remove("error");
+    notifySuccess.style.display = 'none';
+    notifyError.style.display = 'none';
 
-      const formData = new FormData(form);
-      const data = {};
-      formData.forEach((value, key) => (data[key] = value));
+    const formData = new FormData(notifyForm);
 
-      try {
-        const response = await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode(data),
-        });
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        body: formData
+      });
 
-        if (response.ok) {
-          statusEl.textContent = "Thank you. You’re on the early notification list.";
-          form.reset();
-        } else {
-          statusEl.textContent =
-            "Something went wrong. Please try again in a moment.";
-          statusEl.classList.add("error");
-        }
-      } catch (err) {
-        statusEl.textContent =
-          "Network error. Please check your connection and try again.";
-        statusEl.classList.add("error");
+      if (response.ok) {
+        // ⭐ Your chosen success message (Option 7)
+        notifySuccess.textContent =
+          'Thank you — truly. You’re now part of the small group who will see AdamRemix™ before the world does.';
+        notifySuccess.style.display = 'block';
+        notifyForm.reset();
+      } else {
+        throw new Error('Network error');
       }
-    });
-  </script>
+    } catch (err) {
+      notifyError.textContent =
+        'Something went wrong. Please try again in a moment.';
+      notifyError.style.display = 'block';
+    }
+  });
+</script>
+
 </body>
 </html>
